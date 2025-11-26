@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TDA Spotlight 2025 - Programme Booklet</title>
+
+    <!-- React & ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600&family=Bebas+Neue&family=Sacramento&display=swap" rel="stylesheet">
+
+    <style>
+        /* Custom Styles & Animations */
+        body { font-family: 'Inter', sans-serif; background-color: black; }
+        .logo-font { font-family: 'Orbitron', sans-serif; }
+        .font-orbitron { font-family: 'Orbitron', sans-serif; }
+        .font-bebas { font-family: 'Bebas Neue', sans-serif; }
+        .font-cursive { font-family: 'Sacramento', cursive; }
+        .writing-vertical { writing-mode: vertical-rl; text-orientation: mixed; }
+
+        /* Neon Text Effect */
+        .neon-text { color: #000; }
+        @supports (-webkit-text-stroke: 1px black) {
+            .neon-text {
+                color: #000000;
+                -webkit-text-stroke: 2px #FF00CC;
+                filter: drop-shadow(0 0 5px rgba(255,0,204,0.8)) drop-shadow(0 0 10px rgba(0,0,0,1));
+            }
+        }
+
+        /* Sparkle Animation */
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        .animate-twinkle { animation: twinkle 3s infinite ease-in-out; }
+
+        /* Button Glow Transition */
+        .show-btn { transition: all 0.3s ease; }
+        .show-btn.active {
+            background-color: #FF00CC;
+            color: black;
+            box-shadow: 0 0 15px rgba(255, 0, 204, 0.6);
+            border-color: #FF00CC;
+        }
+        .show-btn.inactive {
+            background-color: transparent;
+            color: white;
+            border-color: #333;
+        }
+        .show-btn.inactive:hover {
+            border-color: #FF00CC;
+            color: #FF00CC;
+        }
+
+        /* Fade In Animation */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in-up { animation: fadeInUp 0.5s ease-out forwards; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        // --- ICONS (SVG Components) ---
+        const IconSearch = ({className}) => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>;
+        const IconMusic = ({className}) => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>;
+        const IconUsers = ({className}) => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>;
+        const IconUser = ({className}) => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>;
+        const IconClock = ({className}) => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>;
+        const IconStar = ({className}) => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>;
+        const IconCalendar = ({className}) => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>;
+        const IconMapPin = ({className}) => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>;
+
+        // --- DATA ---
+        const DATA = {
+            meta: {
+                eventDate: "29 NOV 2025",
+                venue: "SCHOOL OF THE ARTS",
+                logoText: "TANEO",
+                bannerSlogan: "Where every star shines",
+            },
+            show1: [
+                { id: "intro", type: "ceremony", title: "Opening & Special Awards Ceremony", description: "Welcome address and presentation of special awards." },
+                { id: 1, title: "Post that Love", choreographer: "Katharine Tan", dancers: ["Alicia Chai", "Kayla Lim Le Yan", "Leong Xi Ning Shyanne", "Misaki Hiroshima", "Oh Jia Xuan", "Valerie Phang Su Lin", "Jessica Yeo En Qi", "Kong Mun Yan Ivette", "Lai Chun Yu Jenna"], classLevel: "G5 Jazz" },
+                { id: 2, title: "APT", choreographer: "Jane Chin & Eliza Lim", dancers: ["Zhang Junyu", "Ananya", "Cheng Qing En Sonia", "Kaytlyn Tan", "Quek Hong Yu August", "Wong Ezanne", "Heather Lua Lin Kwan", "Han Yu Tong Amy", "Lee Yi Qing", "Tan Ti Yun Stephanie", "Xu Mia"], classLevel: "G1 Ballet, G2 Ballet & Pre-modern Jazz" },
+                { id: 3, title: "Colours of the Wind", choreographer: "Tan Xin Yen", dancers: ["Geng Xuxiao", "Aeva Zheng Minxuan", "Tan Yu Xi Ada", "Jeanna Yeo", "Ava Rachel Yong", "Ng Jia Xuan Sara", "Rachel Peh Xin Ying", "Rachel Zhang Yuqing", "Chan Yan Ning Trina"], classLevel: "G3 Ballet" },
+                { id: 4, title: "The Train Song", choreographer: "Jane Chin", dancers: ["Temax Neo", "Nathan Tan", "Taylynne Wee", "Alessia Ang"], classLevel: "Toddler Class" },
+                { id: 5, title: "Rhythm of the Night", choreographer: "Katharine Tan", dancers: ["Alicia Chai", "Kayla Lim Le Yan", "Leong Xi Ning Shyanne", "Misaki Hiroshima", "Oh Jia Xuan", "Valerie Phang Su Lin", "Jessica Yeo En Qi", "Kong Mun Yan Ivette", "Lai Chun Yu Jenna"], classLevel: "G5 Jazz" },
+                { id: 6, title: "This Wish", choreographer: "Eliza Lim", dancers: ["Quek Hong Yu August", "Wong Ezanne", "Heather Lua Lin Kwan", "Han Yu Tong Amy", "Lee Yi Qing"], classLevel: "G2 Ballet" },
+                { id: 7, title: "Cherisse - Broadway", choreographer: "Solo Performance", dancers: ["Cherisse Keh"], classLevel: "The Rising Stars" },
+                { id: 8, title: "Happy", choreographer: "Jane Chin", dancers: ["Temax Neo", "Nathan Tan", "Taylynne Wee", "Alessia Ang"], classLevel: "Toddler Class" },
+                { id: 9, title: "Never Enough", choreographer: "Jane Chin", dancers: ["Zhang Junyu", "Ananya", "Cheng Qing En Sonia", "Kaytlyn Tan"], classLevel: "G1 Ballet" },
+                { id: 10, title: "Jump", choreographer: "Tan Xin Yen", dancers: ["Geng Xuxiao", "Aeva Zheng Minxuan", "Tan Yu Xi Ada", "Jeanna Yeo", "Ava Rachel Yong", "Ng Jia Xuan Sara", "Rachel Peh Xin Ying", "Rachel Zhang Yuqing", "Chan Yan Ning Trina"], classLevel: "G3 Ballet" },
+                { id: 11, title: "Dance the Night", choreographer: "Jane Chin", dancers: ["Tan Ti Yun Stephanie", "Xu Mia"], classLevel: "Pre-modern Jazz" },
+                { id: 12, title: "Kayla & Valerie - Contemporary Duo", choreographer: "Duo Performance", dancers: ["Kayla Lim Le Yan", "Valerie Phang Su Lin"], classLevel: "The Rising Stars" },
+                { id: "break", type: "intermission", title: "10 Minute Intermission", description: "Grab a drink and stretch your legs!" },
+                { id: 13, title: "Misaki - Lyrical", choreographer: "Solo Performance", dancers: ["Misaki Hiroshima"], classLevel: "The Rising Stars" },
+                { id: 14, title: "The Rose", choreographer: "Summer Sanchez", dancers: ["Koh Xuan Yu Adele", "Kara Yong", "Tan Xuan Ni Valerie", "Jaycee Ng Zi Xin", "Jayleen Gan Tzi Herng", "Alicia Chai", "Liu Xin Ning", "Leong Xi Ning Shyanne", "Sarah Cheong Hin", "Lua Xing Le", "Danesa", "Darice Peng"], classLevel: "G5 Ballet" },
+                { id: 15, title: "Nobody Can Change Me", choreographer: "Eliza Lim", dancers: ["Tan Ti Fen Tiffany", "Koh Yee Han", "Lee Yi Qing", "Heather Lua Lin Kwan", "Chiu Hui Ying Elisa", "Liew Le Yao", "Yao Xiao He", "Sofia Yong Yu Qing", "Jamie Ng", "Jewel Ng", "Genessa"], classLevel: "Junior Jazz" },
+                { id: 16, title: "She Used to be Mine", choreographer: "Summer Sanchez", dancers: ["Estella Tay Yi Qiao", "Kayla Lim Le Yan", "Ruolin", "Valerie Phang"], classLevel: "G6 Ballet" },
+                { id: 17, title: "Soda Pop", choreographer: "Carrissa Ting", dancers: ["Chan Yan Ning Trina", "Aeva Zheng Minxuan", "Tong Gai Yee Tiffany", "Sun Ziyu", "Ng Jia Xuan Sara", "Rachel Zhang Yuqing"], classLevel: "G3 Jazz" },
+                { id: 18, title: "Girlfriend", choreographer: "Summer Sanchez", dancers: ["Chu Luo Yi", "Ho Shu Ning", "Zhang Xinling"], classLevel: "G1 Jazz" },
+                { id: 19, title: "Dancing Fool", choreographer: "Summer Sanchez", dancers: ["Koh Xuan Yu Adele", "Kara Yong", "Tan Xuan Ni Valerie", "Jaycee Ng Zi Xin", "Jayleen Gan Tzi Herng", "Alicia Chai", "Liu Xin Ning", "Leong Xi Ning Shyanne", "Sarah Cheong Hin", "Lua Xing Le", "Danesa", "Darice Peng", "Estella Tay Yi Qiao", "Kayla Lim Le Yan", "Ruolin", "Valerie Phang"], classLevel: "G5 Ballet & G6 Ballet" },
+                { id: 20, title: "Ava - Acro", choreographer: "Solo Performance", dancers: ["Ava Rachel Yong"], classLevel: "The Rising Stars" },
+                { id: 21, title: "Coppelia", choreographer: "Tan Xin Yen & Katharine Tan", dancers: ["Misaki Hiroshima", "Oh Jia Xuan", "Nuthyada Nadia Loone", "Taylor Wee Taitong", "Mikaela Teo Xin En", "Cherisse Keh", "Selene Tan"], classLevel: "Sub-elementary, Elementary & Intermediate Ballet" },
+                { id: 22, title: "Move Your Feet", choreographer: "Eliza Lim & Summer Sanchez", dancers: ["Chu Luo Yi", "Ho Shu Ning", "Zhang Xinling", "Tan Ti Fen Tiffany", "Koh Yee Han", "Lee Yi Qing", "Heather Lua Lin Kwan", "Chiu Hui Ying Elisa", "Liew Le Yao", "Yao Xiao He", "Sofia Yong Yu Qing", "Jamie Ng", "Jewel Ng", "Genessa"], classLevel: "Junior Jazz & G1 Jazz" },
+                { id: 23, title: "Shake the Room", choreographer: "Carrissa Ting", dancers: ["Chan Yan Ning Trina", "Aeva Zheng Minxuan", "Tong Gai Yee Tiffany", "Sun Ziyu", "Ng Jia Xuan Sara", "Rachel Zhang Yuqing"], classLevel: "G3 Jazz" },
+                { id: 24, title: "Ordinary", choreographer: "Tan Xin Yen & Katharine Tan", dancers: ["Misaki Hiroshima", "Oh Jia Xuan", "Nuthyada Nadia Loone", "Taylor Wee Taitong", "Mikaela Teo Xin En", "Cherisse Keh", "Selene Tan"], classLevel: "Sub-elementary, Elementary & Intermediate Ballet" },
+                { id: 25, title: "Alicia Jazz", choreographer: "Solo Performance", dancers: ["Alicia Chai"], classLevel: "The Rising Stars" }
+            ],
+            show2: [
+                { id: "intro", type: "ceremony", title: "Opening & Special Awards Ceremony", description: "Welcome address and presentation of special awards." },
+                { id: 1, title: "Be Our Guest", choreographer: "Tan Xin Yen", dancers: ["Lee Ruo Xuan Charlotte", "Tan Yu Xi Ada", "Jeanna Yeo", "Angelina Chiew Ze En", "Cherise Zhou Enxuan", "Natasha Chua Wen Qi", "Foo Yu Han Jazzelle", "Mizuki Hiroshima", "Taysha Wee Taixuan", "Charlotte Tang Kai Shyanne", "Taylor Wee Taitong", "Charity Claire Teo En Qi"], classLevel: "G3 Jazz" },
+                { id: 2, title: "Can't Stop the Feeling", choreographer: "Cheryn Lee", dancers: ["Syuen Wong Su Yuan", "Woon Yong Yi Lauren", "Alisa Tan Yi", "Ashlyn Tan"], classLevel: "Primary Ballet & G1 Ballet" },
+                { id: 3, title: "Dracula", choreographer: "Tan Xin Yen & Summer Sanchez", dancers: ["Caylabelle Cheong Hiu Lok", "Diana Bylinina", "Cherisse Keh"], classLevel: "G6 Jazz & G9 Jazz" },
+                { id: 4, title: "Abracadabra", choreographer: "Tan Xin Yen", dancers: ["Lee Ruo Xuan Charlotte", "Tan Yu Xi Ada", "Jeanna Yeo", "Angelina Chiew Ze En", "Cherise Zhou Enxuan", "Natasha Chua Wen Qi", "Foo Yu Han Jazzelle", "Mizuki Hiroshima", "Taysha Wee Taixuan", "Charlotte Tang Kai Shyanne", "Taylor Wee Taitong", "Charity Claire Teo En Qi"], classLevel: "G3 Jazz" },
+                { id: 5, title: "How Far I'll Go", choreographer: "Cheryn Lee", dancers: ["Syuen Wong Su Yuan", "Woon Yong Yi Lauren", "Alisa Tan Yi", "Ashlyn Tan"], classLevel: "Primary Ballet & G1 Ballet" },
+                { id: 6, title: "On the Floor", choreographer: "Tan Xin Yen, Summer Sanchez, Jane Chin", dancers: ["Caylabelle Cheong Hiu Lok", "Diana Bylinina", "Cherisse Keh", "Effie Poon"], classLevel: "G6 Jazz, G9 Jazz & G3 Contemporary" },
+                { id: 7, title: "Free", choreographer: "Cheryn Lee", dancers: ["Ashley Tan Jia Qi", "Kow Jia Xi", "Avery Chua Wen Yu", "Azalea Ang Qi Han"], classLevel: "G2 Ballet" },
+                { id: 8, title: "Melissa - Acro", choreographer: "Solo Performance", dancers: ["Melissa Phang Si Hui"], classLevel: "The Rising Stars" },
+                { id: 9, title: "Hey Mickey", choreographer: "Katharine Tan", dancers: ["Ong Zi Mo", "Chua Xin Ci", "Olivia Shen Shin Yue", "Chiu Hui Zhen Elaine", "Bella Yam En Hui", "Li Rui'en", "Joey Ho Ling Hui", "Lim Ker En Avery", "Jojo Choo", "Alyssa Chng", "Mia Tan"], classLevel: "Pre-primary Ballet & Kinder Jazz" },
+                { id: 10, title: "Arcade", choreographer: "Jane Chin", dancers: ["Effie Poon"], classLevel: "G3 Contemporary" },
+                { id: 11, title: "Por Una Cabeza", choreographer: "Cheryn Lee & Lalita Lau", dancers: ["Natasha Chua Wen Qi", "Wong Jun Hui", "Ashlyn Tang En Xi", "Grace Ng Chuan Rong", "Angelina Chiew Ze En", "Ashley Tan Jia Qi", "Kow Jia Xi", "Avery Chua Wen Yu", "Azalea Ang Qi Han"], classLevel: "G2 Ballet, G4 Ballet & G6 Ballet" },
+                { id: 12, title: "Tea Party", choreographer: "Katharine Tan", dancers: ["Bella Yam En Hui", "Chiu Hui Zhen Elaine", "Li Rui'en", "Joey Ho Ling Hui", "Lim Ker En Avery", "Jojo Choo", "Alyssa Chng", "Mia Tan"], classLevel: "Kinder Jazz" },
+                { id: 13, title: "Caylabelle - Lyrical", choreographer: "Solo Performance", dancers: ["Caylabelle Cheong Hiu Lok"], classLevel: "The Rising Stars" },
+                { id: "break", type: "intermission", title: "10 Minute Intermission", description: "Grab a drink and stretch your legs!" },
+                { id: 14, title: "Something Just Like This", choreographer: "Jane Chin", dancers: ["Jong Xuan Yin", "Chiu Hui Ying Elisa", "Genessa", "Wong Xuan Wen Bertina", "Charlotte Tang Kai Shyanne", "Sophia Pan Jia Xuan", "Chen Yi Ning", "Lim Yan Qi Shyanne"], classLevel: "G2 Ballet" },
+                { id: 15, title: "Girls Just Wanna Have Fun", choreographer: "Teo Jia Xuan", dancers: ["Tan Hui Xian Gabrielle", "Nanthana Thirunavukkarasu", "Choo Wenjia Jamie"], classLevel: "G4 Jazz" },
+                { id: 16, title: "Zootopia (Try Everything)", choreographer: "Lalita Lau", dancers: ["Natasha Chua Wen Qi", "Wong Jun Hui", "Ashlyn Tang En Xi", "Grace Ng Chuan Rong", "Angelina Chiew Ze En", "Ho Jia Ying Janelle", "Ava Rachel Yong", "Avery Chua Wen Yu", "Audrey Seah Ziyan", "Xaerys Lam"], classLevel: "G4 Ballet, G6 Ballet & G1 Jazz" },
+                { id: 17, title: "Tightrope", choreographer: "Jane Chin", dancers: ["Jong Xuan Yin", "Chiu Hui Ying Elisa", "Genessa", "Wong Xuan Wen Bertina", "Charlotte Tang Kai Shyanne", "Sophia Pan Jia Xuan", "Chen Yi Ning", "Lim Yan Qi Shyanne"], classLevel: "G2 Ballet" },
+                { id: 18, title: "Don't I Make It Look Easy", choreographer: "Teo Jia Xuan", dancers: ["Tan Hui Xian Gabrielle", "Nanthana Thirunavukkarasu", "Choo Wenjia Jamie"], classLevel: "G4 Jazz" },
+                { id: 19, title: "Barbie Girl", choreographer: "Lalita Lau", dancers: ["Ho Jia Ying Janelle", "Ava Rachel", "Avery Chua Wen Yu", "Audrey Seah Ziyan", "Xaerys Lam"], classLevel: "G1 Jazz" },
+                { id: 20, title: "Golden", choreographer: "Cheryn Lee", dancers: ["Emily Chia", "Stacey Goh", "Aurelia Ana Rotaru", "Azalea Ang Qi Han", "Jezelle Tan", "Jaecia Tan", "Angela Tan"], classLevel: "G2 Jazz" },
+                { id: 21, title: "Scars to your Beautiful", choreographer: "Jane Chin", dancers: ["Zhang Yuxi Kaitlynn", "Kayann Chng", "Mizuki Hiroshima", "Melissa Phang Si Hui", "Foo Yu Han Jazzelle", "Taysha Wee Taixuan"], classLevel: "G4 Ballet" },
+                { id: 22, title: "Rainbow", choreographer: "Katharine Tan", dancers: ["Ong Zi Mo", "Chua Xin Ci", "Olivia Shen Shin Yue", "Chiu Hui Zhen Elaine"], classLevel: "Pre-primary Ballet" },
+                { id: 23, title: "Natasha - Broadway", choreographer: "Solo Performance", dancers: ["Natasha Chua Wen Qi"], classLevel: "The Rising Stars" },
+                { id: 24, title: "Debut", choreographer: "Jane Chin", dancers: ["Zhang Yuxi Kaitlynn", "Kayann Chng", "Mizuki Hiroshima", "Melissa Phang Si Hui", "Foo Yu Han Jazzelle", "Taysha Wee Taixuan"], classLevel: "G4 Ballet" },
+                { id: 25, title: "How You Like That", choreographer: "Cheryn Lee", dancers: ["Emily Chia", "Stacey Goh", "Aurelia Ana Rotaru", "Azalea Ang Qi Han", "Jezelle Tan", "Jaecia Tan", "Angela Tan"], classLevel: "G2 Jazz" },
+                { id: 26, title: "Ada, Avery & Charlotte - Broadway Trio", choreographer: "Trio Performance", dancers: ["Tan Yu Xi Ada", "Avery Chua Wen Yu", "Charlotte Tang Kai Shyanne"], classLevel: "The Rising Stars" }
+            ]
+        };
+
+        const Header = () => {
+            const sparkles = React.useMemo(() => {
+                return Array.from({ length: 50 }).map((_, i) => ({
+                    id: i,
+                    left: `${Math.random() * 100}%`,
+                    top: `${Math.random() * 100}%`,
+                    animationDelay: `${Math.random() * 3}s`,
+                    opacity: Math.random(),
+                    size: Math.random() > 0.8 ? 'w-2 h-2' : 'w-1 h-1'
+                }));
+            }, []);
+
+            return (
+                <header className="relative w-full bg-black text-white pt-12 pb-16 px-4 overflow-hidden">
+                    <div className="absolute inset-0 z-0">
+                        <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900 to-black"></div>
+                        <div className="absolute top-10 left-10 w-32 h-32 rounded-full bg-white opacity-5 blur-2xl"></div>
+                        <div className="absolute top-40 right-20 w-48 h-48 rounded-full bg-[#f0c] opacity-10 blur-3xl animate-pulse"></div>
+                        {sparkles.map((sparkle) => (
+                            <div key={sparkle.id} className={`absolute rounded-full bg-white ${sparkle.size} animate-twinkle`} style={{ left: sparkle.left, top: sparkle.top, animationDelay: sparkle.animationDelay, opacity: sparkle.opacity, boxShadow: '0 0 4px 1px rgba(255, 255, 255, 0.6)' }} />
+                        ))}
+                    </div>
+                    <div className="relative z-10 flex flex-col items-center justify-center text-center">
+                        <div className="mb-6 font-black tracking-tighter uppercase text-3xl md:text-4xl logo-font text-white" style={{ textShadow: '0 0 10px rgba(255,255,255,0.5)' }}>{DATA.meta.logoText}</div>
+                        <div className="relative flex items-center justify-center mb-6">
+                            <h1 className="text-6xl md:text-9xl font-bold tracking-tight uppercase relative z-10 font-bebas neon-text">SPOTLIGHT</h1>
+                            <div className="absolute -right-8 md:-right-16 top-0 h-full flex items-center">
+                                <span className="writing-vertical text-2xl md:text-4xl font-bold text-white opacity-90 tracking-widest font-bebas" style={{ textShadow: '2px 2px 4px #000' }}>2025</span>
+                            </div>
+                        </div>
+                        <p className="text-2xl md:text-4xl text-white font-cursive mb-10" style={{ textShadow: '2px 2px 4px #000, 0 0 10px rgba(255,255,255,0.5)' }}>{DATA.meta.bannerSlogan}</p>
+                        <div className="flex flex-col md:flex-row gap-2 md:gap-8 text-sm md:text-base font-bold tracking-widest uppercase text-gray-300">
+                            <div className="flex items-center justify-center gap-2"><IconCalendar className="text-[#f0c] w-4 h-4" /><span>{DATA.meta.eventDate}</span></div>
+                            <div className="hidden md:block text-[#f0c]">•</div>
+                            <div className="flex items-center justify-center gap-2"><IconMapPin className="text-[#f0c] w-4 h-4" /><span>{DATA.meta.venue}</span></div>
+                        </div>
+                    </div>
+                </header>
+            );
+        };
+
+        const Footer = () => (
+            <footer className="bg-black text-[#f0c] py-12 px-6 text-center border-t border-[#333]">
+                <div className="max-w-2xl mx-auto">
+                    <IconStar className="w-8 h-8 mx-auto mb-4 animate-pulse" />
+                    <h3 className="text-2xl font-bold mb-4 font-orbitron">Thank You!</h3>
+                    <p className="text-gray-300 mb-8 leading-relaxed">Hope you enjoyed watching our dancers light up the stage. <br/> See you next year!</p>
+                    <div className="text-xs text-gray-600 uppercase tracking-widest">TDA Spotlight 2025 • Programme Booklet</div>
+                </div>
+            </footer>
+        );
+
+        const ProgramItem = ({ item }) => {
+            const isIntermission = item.type === "intermission";
+            const isCeremony = item.type === "ceremony";
+            const hideChoreographer = ["Solo Performance", "Duo Performance", "Trio Performance"].includes(item.choreographer);
+
+            if (isIntermission) {
+                return (
+                    <div className="my-12 relative py-8 overflow-hidden group">
+                        <div className="absolute inset-0 bg-[#f0c] opacity-10 -skew-y-3 transform group-hover:skew-y-0 transition-transform duration-500"></div>
+                        <div className="relative z-10 flex flex-col items-center justify-center text-center">
+                            <IconClock className="w-8 h-8 text-[#f0c] mb-2" />
+                            <h3 className="text-2xl font-bold text-white uppercase tracking-widest font-orbitron">{item.title}</h3>
+                            <p className="text-gray-400 mt-2">{item.description}</p>
+                        </div>
+                    </div>
+                );
+            }
+
+            if (isCeremony) {
+                return (
+                    <div className="mb-12 mt-4 text-center border border-[#333] p-8 rounded-xl bg-gradient-to-b from-gray-900 to-black shadow-[0_0_15px_rgba(255,0,204,0.1)]">
+                        <IconStar className="w-12 h-12 text-[#f0c] mx-auto mb-4" />
+                        <h3 className="text-3xl font-bold text-white mb-2 font-orbitron">{item.title}</h3>
+                        <p className="text-gray-400">{item.description}</p>
+                    </div>
+                );
+            }
+
+            return (
+                <div className="group relative bg-[#0a0a0a] rounded-xl p-6 md:p-8 hover:bg-[#111] transition-all duration-300 border border-[#222] hover:border-[#f0c] flex flex-col h-full">
+                    <div className="absolute -top-3 -left-3 bg-[#f0c] text-black font-black text-xl w-10 h-10 flex items-center justify-center rounded shadow-lg z-10">{item.id}</div>
+                    <div className="flex-1">
+                        <div className="flex justify-between items-start mb-4 pl-2">
+                            <h3 className="text-2xl font-bold text-white leading-tight font-orbitron group-hover:text-[#f0c] transition-colors">{item.title}</h3>
+                        </div>
+                        <div className="space-y-4">
+                            <div className="flex items-start space-x-3">
+                                <div className="mt-1 p-1 bg-[#222] rounded text-[#f0c]"><IconUsers className="w-3.5 h-3.5" /></div>
+                                <div><span className="text-[10px] uppercase tracking-widest text-gray-500 block mb-0.5">Class</span><span className="text-gray-300 font-medium text-sm">{item.classLevel}</span></div>
+                            </div>
+                            {!hideChoreographer && (
+                                <div className="flex items-start space-x-3">
+                                    <div className="mt-1 p-1 bg-[#222] rounded text-[#f0c]"><IconUser className="w-3.5 h-3.5" /></div>
+                                    <div><span className="text-[10px] uppercase tracking-widest text-gray-500 block mb-0.5">Choreographer</span><span className="text-gray-300 text-sm">{item.choreographer}</span></div>
+                                </div>
+                            )}
+                            <div className="mt-4 pt-4 border-t border-[#222]">
+                                <span className="text-[10px] uppercase tracking-widest text-gray-500 block mb-2">Dancers</span>
+                                <div className="flex flex-wrap gap-2">
+                                    {item.dancers.map((dancer, idx) => (
+                                        <span key={idx} className="inline-block px-2 py-1 bg-black border border-[#333] rounded text-xs text-gray-400">{dancer}</span>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const App = () => {
+            const [activeShow, setActiveShow] = React.useState('show1');
+            const [searchTerm, setSearchTerm] = React.useState("");
+
+            const filteredItems = React.useMemo(() => {
+                const currentData = DATA[activeShow];
+                return currentData.filter(item => {
+                    const searchLower = searchTerm.toLowerCase();
+                    if (item.id.toString().includes(searchLower)) return true;
+                    if (item.title && item.title.toLowerCase().includes(searchLower)) return true;
+                    if (item.dancers && item.dancers.some(d => d.toLowerCase().includes(searchLower))) return true;
+                    if (item.classLevel && item.classLevel.toLowerCase().includes(searchLower)) return true;
+                    return false;
+                });
+            }, [activeShow, searchTerm]);
+
+            return (
+                <div className="min-h-screen bg-black text-gray-100 font-sans selection:bg-[#f0c] selection:text-black pb-20">
+                    <Header />
+                    <main className="max-w-5xl mx-auto px-4 -mt-8 relative z-20">
+
+                        {/* Show Selector Toggle */}
+                        <div className="flex justify-center mb-6">
+                            <div className="bg-[#111] p-2 rounded-full border border-[#333] inline-flex shadow-xl">
+                                <button
+                                    onClick={() => setActiveShow('show1')}
+                                    className={`show-btn px-8 py-2 rounded-full font-orbitron font-bold text-lg border-2 ${activeShow === 'show1' ? 'active' : 'inactive'}`}
+                                >
+                                    SHOW 1
+                                </button>
+                                <div className="w-4"></div>
+                                <button
+                                    onClick={() => setActiveShow('show2')}
+                                    className={`show-btn px-8 py-2 rounded-full font-orbitron font-bold text-lg border-2 ${activeShow === 'show2' ? 'active' : 'inactive'}`}
+                                >
+                                    SHOW 2
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* Search Bar */}
+                        <div className="bg-[#111] p-4 rounded-xl border border-[#222] mb-12 flex items-center gap-3 sticky top-4 z-50 shadow-2xl">
+                            <IconSearch className="text-[#f0c] w-6 h-6" />
+                            <input type="text" placeholder={`Search Show ${activeShow === 'show1' ? '1' : '2'}...`} className="bg-transparent border-none outline-none text-white w-full placeholder-gray-600 text-lg" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+                        </div>
+
+                        {/* Items Grid */}
+                        <div className="space-y-6 md:space-y-0 md:grid md:grid-cols-2 lg:grid-cols-2 gap-6 md:gap-8">
+                            {filteredItems.map((item, index) => {
+                                const isFullWidth = item.type === "intermission" || item.type === "ceremony";
+                                const spanClass = isFullWidth ? "md:col-span-2" : "";
+                                return <div key={index} className={`${spanClass} fade-in-up`}><ProgramItem item={item} /></div>;
+                            })}
+                        </div>
+
+                        {filteredItems.length === 0 && (
+                            <div className="text-center py-20 opacity-50"><IconMusic className="w-16 h-16 mx-auto mb-4" /><h3 className="text-xl">No performances found</h3></div>
+                        )}
+                    </main>
+                    <div className="h-12"></div>
+                    <Footer />
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
